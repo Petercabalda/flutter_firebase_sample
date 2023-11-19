@@ -27,6 +27,7 @@ class _Page1State extends State<Page1> {
             id: data!['id'],
             name: data['name'],
             email: data['email'],
+            image: data['image'],
           );
           return buildUserInfo(employee);
         }

@@ -21,6 +21,7 @@ class _AddDataState extends State<AddData> {
       id: docUser.id,
       name: nameController.text,
       email: emailController.text,
+      image: '',
     );
 
     final json = newEmployee.toJson();

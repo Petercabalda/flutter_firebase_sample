@@ -29,6 +29,7 @@ class _RegisterState extends State<Register> {
       id: userid,
       name: namecontroller.text,
       email: emailcontroller.text,
+      image: '',
     );
 
     final json = employee.toJson();

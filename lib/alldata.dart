@@ -31,7 +31,10 @@ class _AlldataState extends State<Alldata> {
   }
 
   Widget buildList(Employee employee) => ListTile(
-        leading: const Icon(Icons.person),
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(employee.image),
+          radius: 25,
+        ),
         title: Text(employee.name),
         subtitle: Text(employee.email),
         dense: true,
