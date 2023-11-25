@@ -1,13 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_sample/add_data.dart';
+import 'package:flutter_firebase_sample/add.dart';
+
 import 'package:flutter_firebase_sample/alldata.dart';
-import 'package:flutter_firebase_sample/authenticator.dart';
-import 'package:flutter_firebase_sample/login.dart';
-import 'package:flutter_firebase_sample/page1.dart';
-import 'package:flutter_firebase_sample/register.dart';
-import 'package:flutter_firebase_sample/update_data.dart';
-import 'package:flutter_firebase_sample/updatephoto.dart';
+import 'package:flutter_firebase_sample/alldata1.dart';
+import 'package:flutter_firebase_sample/alldata2.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -58,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const UpdatePhoto(),
+      home: const AllData(),
     );
   }
 }

@@ -1,67 +1,67 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_sample/users.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter_firebase_sample/users.dart';
 
 Future<List<Users>> fetchUserList() async {
   final response = await http.get(
     Uri.parse(
-      'https://reqres.in/api/users',
+      'https://sampleapicall.ebsu-escholar.com/alldata.php',
     ),
   );
+
   if (response.statusCode == 200) {
-    Map<String, dynamic> map = json.decode(response.body);
-    List<dynamic> data = map["data"];
+    List<dynamic> data = json.decode(
+      response.body,
+    );
     return data.map((data) => Users.fromJson(data)).toList();
   } else {
     throw Exception('Failed to load user data');
   }
 }
 
-buildColumn(Users fetchList, BuildContext context) {
-  return Card(
-    child: ListTile(
-      leading: CircleAvatar(
-        radius: 30,
-        backgroundImage: NetworkImage(fetchList.avatar),
-      ),
-      title: Text('${fetchList.first_name} ${fetchList.last_name}'),
-      subtitle: Text(fetchList.email),
-    ),
-  );
-}
-
-buildList(BuildContext context, List<Users> fetchList) {
-  return ListView.builder(
-    itemCount: fetchList.length,
-    itemBuilder: (context, int currentIndex) {
-      return buildColumn(fetchList[currentIndex], context);
-    },
-  );
-}
-
-class AllData extends StatefulWidget {
-  const AllData({super.key});
+class AllData2 extends StatefulWidget {
+  const AllData2({super.key});
 
   @override
-  State<AllData> createState() => _AllDataState();
+  State<AllData2> createState() => _AllData2State();
 }
 
-class _AllDataState extends State<AllData> {
+class _AllData2State extends State<AllData2> {
   late Future<List<Users>> fetchUserListAcc;
-
   @override
   void initState() {
     fetchUserListAcc = fetchUserList();
     super.initState();
   }
 
+  buildList(BuildContext context, List<Users> fetchList) {
+    return ListView.builder(
+      itemCount: fetchList.length,
+      itemBuilder: (context, int currentIndex) {
+        return buildColumn(fetchList[currentIndex], context);
+      },
+    );
+  }
+
+  buildColumn(Users fetchList, BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: CircleAvatar(
+          radius: 30,
+          backgroundImage: NetworkImage(fetchList.avatar),
+        ),
+        title: Text('${fetchList.first_name} ${fetchList.last_name}'),
+        subtitle: Text(fetchList.email),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fetching data from Internet'),
+        title: const Text('Fetching Data from Internet'),
       ),
       body: Center(
         child: FutureBuilder<List<Users>>(
